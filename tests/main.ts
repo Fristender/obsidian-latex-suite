@@ -5,7 +5,9 @@ import { editorLivePreviewField, MarkdownView } from "obsidian";
 import { EditorView } from "@codemirror/view";
 import { RawSnippetSchema } from "../src/snippets/parse";
 import * as v from "valibot"
-import { colorPairedBrackets, colorPairedBracketsPlugin } from "../src/editor_extensions/highlight_brackets";
+import { colorPairedBrackets, colorPairedBracketsPlugin, pairBrackets, traverseTree } from "../src/editor_extensions/highlight_brackets";
+import { EquationText, iterateTreeCursor } from "../src/utils/tokenizer";
+import { parser as latexParser } from "../src/parser/mathjax/latex-parser";
 import i18next from "../src/i18n/i18n";
 import { settings_translation } from "../src/i18n/i18n";
 import type {} from "../src/i18n/i18next";
@@ -44,6 +46,11 @@ export default class TestPlugin extends LatexSuitePlugin {
 		settings_translation,
 		i18next,
 		EditorView,
+		EquationText,
+		iterateTreeCursor,
+		latexParser,
+		traverseTree,
+		pairBrackets,
 	} as const;	
 	async onload() {
 		await super.onload();
